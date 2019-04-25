@@ -111,8 +111,9 @@ if (!isset($_GET["Cleanup"])) {
 
         // Get blob.
         echo "This is the content of the blob uploaded: ";
-        $blob = $blobClient->getBlob($containerName, $_FILES["resFile"]["name"]);
-        fpassthru($blob->getContentStream());
+        //$blob = $blobClient->getBlob($containerName, $_FILES["resFile"]["name"]);
+		echo $blobClient.Uri.AbsoluteUri;
+        //fpassthru($blob->getContentStream());
         echo "<br />";
     }
     catch(ServiceException $e){
