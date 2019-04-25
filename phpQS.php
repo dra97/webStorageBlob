@@ -94,11 +94,12 @@ if (!isset($_GET["Cleanup"])) {
 
         // Get blob.
         echo "This is the content of the blob uploaded: ";
-		echo "https://dra97webapp.blob.core.windows.net/"+$containerName+"/"+$_FILES["resFile"]["name"];
+		
 		//echo '<script type="text/javascript">',
 			//'processImage();',
 			//'</script>';
         echo "<br />";
+		echo "https://dra97webapp.blob.core.windows.net/"+$containerName+"/"+$_FILES["resFile"]["name"];
     }
     catch(ServiceException $e){
         // Handle exception based on error codes and messages.
