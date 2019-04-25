@@ -79,8 +79,8 @@ if (!isset($_GET["Cleanup"])) {
         $blobClient->createContainer($containerName, $createContainerOptions);
 
         // Getting local file so that we can upload it to Azure
-        $myfile = fopen($fileToUpload, "r") or die("Unable to open file!");
-        fclose($myfile);
+        //$myfile = fopen($fileToUpload, "r") or die("Unable to open file!");
+        //fclose($myfile);
         
         # Upload file as a block blob
         echo "Uploading BlockBlob: ".PHP_EOL;
@@ -90,7 +90,7 @@ if (!isset($_GET["Cleanup"])) {
         $content = fopen($fileToUpload, "r");
 
         //Upload blob
-        $blobClient->createBlockBlob($containerName, $fileToUpload, $content);
+        $blobClient->createBlockBlob($containerName, $_FILES["resFile"]["name"], $content);
 
         // List blobs.
         $listBlobsOptions = new ListBlobsOptions();
