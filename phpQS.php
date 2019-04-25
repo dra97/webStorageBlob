@@ -46,9 +46,8 @@ $connectionString = "DefaultEndpointsProtocol=https;AccountName=dra97webapp;Acco
 // Create blob client.
 $blobClient = BlobRestProxy::createBlobService($connectionString);
 
-$fileToUpload = "HelloWorld.txt";
-if(isset($_FILES['image'])){
-	$fileToUpload = $_FILES['image'];
+if(isset($_FILES['resFile'])){
+	$fileToUpload = $_FILES['resFile']['tmp_name'];
 }
 
 if (!isset($_GET["Cleanup"])) {
@@ -155,17 +154,6 @@ else
     }
 }
 ?>
-
-<html>
-   <body>
-      
-      <form action="" method="POST" enctype="multipart/form-data">
-         <input type="file" name="image" />
-         <input type="submit"/>
-      </form>
-      
-   </body>
-</html>
 
 
 <form method="post" action="index.php?Cleanup&containerName=<?php echo $containerName; ?>">
