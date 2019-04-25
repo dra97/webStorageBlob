@@ -46,7 +46,7 @@ $connectionString = "DefaultEndpointsProtocol=https;AccountName=dra97webapp;Acco
 // Create blob client.
 $blobClient = BlobRestProxy::createBlobService($connectionString);
 
-$fileToUpload = $_FILES["resFile"];
+$fileToUpload = $_FILES["resFile"]["tmp_name"];
 
 if (!isset($_GET["Cleanup"])) {
     // Create container options object.
@@ -111,7 +111,7 @@ if (!isset($_GET["Cleanup"])) {
 
         // Get blob.
         echo "This is the content of the blob uploaded: ";
-        $blob = $blobClient->getBlob($containerName, $fileToUpload);
+        $blob = $blobClient->getBlob($containerName, $_FILES["resFile"]["name"];
         fpassthru($blob->getContentStream());
         echo "<br />";
     }
