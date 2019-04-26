@@ -78,17 +78,12 @@ if (!isset($_GET["Cleanup"])) {
     try {
         // Create container.
         $blobClient->createContainer($containerName, $createContainerOptions);
-
-        // Getting local file so that we can upload it to Azure
-        //$myfile = fopen($fileToUpload, "r") or die("Unable to open file!");
-        //fclose($myfile);
-        
         
         $content = fopen($fileToUpload, "r");
 
         //Upload blob
         $blobClient->createBlockBlob($containerName, $_FILES["resFile"]["name"], $content);
-		
+		$urlImageResult = "https://dra97webapp.blob.core.windows.net/".$containerName."/".$_FILES["resFile"]["name"];
     }
     catch(ServiceException $e){
         // Handle exception based on error codes and messages.
@@ -128,3 +123,4 @@ else
 }
 include('computervision.html');
 ?>
+
