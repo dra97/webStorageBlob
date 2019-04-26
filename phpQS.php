@@ -47,6 +47,7 @@ $connectionString = "DefaultEndpointsProtocol=https;AccountName=dra97webapp;Acco
 $blobClient = BlobRestProxy::createBlobService($connectionString);
 
 $fileToUpload = $_FILES["resFile"]["tmp_name"];
+$urlImageResult = '';
 
 if (!isset($_GET["Cleanup"])) {
     // Create container options object.
@@ -99,7 +100,7 @@ if (!isset($_GET["Cleanup"])) {
 			//'processImage();',
 			//'</script>';
         echo "<br />";
-		echo "https://dra97webapp.blob.core.windows.net/"+$containerName+"/"+$_FILES["resFile"]["name"];
+		$urlImageResult = "https://dra97webapp.blob.core.windows.net/".$containerName."/".$_FILES["resFile"]["name"];
     }
     catch(ServiceException $e){
         // Handle exception based on error codes and messages.
@@ -137,7 +138,9 @@ else
         echo $code.": ".$error_message."<br />";
     }
 }
+include('computervision.html');
 ?>
 <form method="post" action="index.php?Cleanup&containerName=<?php echo $containerName; ?>">
     <button type="submit">Press to clean up all resources created by this sample</button>
 </form>
+
