@@ -83,24 +83,12 @@ if (!isset($_GET["Cleanup"])) {
         //$myfile = fopen($fileToUpload, "r") or die("Unable to open file!");
         //fclose($myfile);
         
-        # Upload file as a block blob
-        echo "Uploading BlockBlob: ".PHP_EOL;
-        echo $fileToUpload;
-        echo "<br />";
         
         $content = fopen($fileToUpload, "r");
 
         //Upload blob
         $blobClient->createBlockBlob($containerName, $_FILES["resFile"]["name"], $content);
-
-        // Get blob.
-        echo "This is the content of the blob uploaded: ";
 		
-		//echo '<script type="text/javascript">',
-			//'processImage();',
-			//'</script>';
-        echo "<br />";
-		$urlImageResult = "https://dra97webapp.blob.core.windows.net/".$containerName."/".$_FILES["resFile"]["name"];
     }
     catch(ServiceException $e){
         // Handle exception based on error codes and messages.
@@ -140,7 +128,3 @@ else
 }
 include('computervision.html');
 ?>
-<form method="post" action="index.php?Cleanup&containerName=<?php echo $containerName; ?>">
-    <button type="submit">Press to clean up all resources created by this sample</button>
-</form>
-
